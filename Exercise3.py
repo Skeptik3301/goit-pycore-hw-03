@@ -6,11 +6,12 @@ def normalize_phone(phone_number):
         if ch.isdigit() or (ch == '+' and i == 0):
             clean_number += ch
 
-
     if clean_number.startswith('+'):
         return clean_number
 
     elif clean_number.startswith('0') or clean_number.startswith('3') or clean_number.isdigit():
+        if clean_number.startswith('380'):
+            return '+' + clean_number
         return '+38' + clean_number
 
     else:
@@ -24,8 +25,9 @@ raw_numbers = [
     "501234567",           
     "+1 (202) 555-0147",      
     "   +48 123 456 789",     
-    "0503451234",             
-    "+49 30 901820",         
+    "38050-123-45-67",             
+    "+1 202 555 0147 ",
+    "501234567",         
 ]
 
 sanitized_numbers = [normalize_phone(num) for num in raw_numbers if normalize_phone(num) is not None]
